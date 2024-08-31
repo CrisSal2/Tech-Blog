@@ -14,14 +14,15 @@ const hbs = exphbs.create();
 const PORT = process.env.PORT || 3001;
 
 const sess = {
-    cookie: {
-      maxAge: 24 * 60 * 60 * 1000, // 1 day in milliseconds
-    },
-    resave: false,
-    saveUninitialized: true,
-    store: new SequelizeStore({
-      db: sequelize,
-    }),
+  secret: process.env.SESSION_SECRET,
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000, // 1 day in milliseconds
+  },
+   resave: false,
+   saveUninitialized: true,
+   store: new SequelizeStore({
+     db: sequelize,
+   }),
 };
 
 app.use(session(sess));
